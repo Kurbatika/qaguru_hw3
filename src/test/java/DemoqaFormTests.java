@@ -37,7 +37,7 @@ public class DemoqaFormTests {
 
         $("#hobbies-checkbox-3").sendKeys(" ");
 
-        $("#uploadPicture").uploadFile(new File("C:/Users/kurba/IdeaProjects/qaguru_hw3/src/test/resources/michael.jpg"));
+        $("#uploadPicture").uploadFile(new File("C:/Users/kurba/IdeaProjects/qaguru_hw3/src/test/resources/pictures/michael.jpg"));
 
         $("#currentAddress").setValue("Los-Angeles, CA");
 
