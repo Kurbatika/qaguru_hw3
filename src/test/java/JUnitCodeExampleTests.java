@@ -3,7 +3,6 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
 public class JUnitCodeExampleTests {
@@ -13,17 +12,21 @@ public class JUnitCodeExampleTests {
     }
 
     @Test
-    void jUnitSearchTest () {
+    void jUnitSearchTest() {
 
         open("https://github.com/");
 
         $("input.header-search-input").setValue("Selenide").pressEnter();
         $$("ul.repo-list").first().$("a.v-align-middle").click();
-
         $("#wiki-tab").click();
-        $(".markdown-body").shouldHave(text("Soft assertions"));
-        $(byText("Soft assertions")).click();
-        $(".markdown-body").shouldHave(text("JUnit5 extend test class"));
+        $("#wiki-pages-filter").setValue("SoftAssertions");
+        $("[href='/selenide/selenide/wiki/SoftAssertions']").click();
+        $(".markdown-body").shouldHave(text(
+                        "  @Test " +
+                                "  void test() { " +
+                                "    Configuration.assertionMode = SOFT; "
+                )
+        );
 
     }
 }
