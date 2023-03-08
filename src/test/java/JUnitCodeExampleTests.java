@@ -14,17 +14,20 @@ public class JUnitCodeExampleTests {
     @Test
     void jUnitSearchTest() {
 
-        open("https://github.com/");
+        open("https://github.com/selenide/selenide");
 
-        $("input.header-search-input").setValue("Selenide").pressEnter();
-        $$("ul.repo-list").first().$("a.v-align-middle").click();
         $("#wiki-tab").click();
         $("#wiki-pages-filter").setValue("SoftAssertions");
         $("[href='/selenide/selenide/wiki/SoftAssertions']").click();
         $(".markdown-body").shouldHave(text(
-                        "  @Test " +
-                                "  void test() { " +
-                                "    Configuration.assertionMode = SOFT; "
+                        """
+                             @Test
+                             void test() {
+                             Configuration.assertionMode = SOFT;
+                             open("page.html");
+                             $("#first").should(visible).click();
+                             $("#second").should(visible).click();
+                             }"""
                 )
         );
 
